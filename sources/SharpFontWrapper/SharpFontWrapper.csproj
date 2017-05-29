@@ -10,15 +10,14 @@
 
     <Title>SharpFontWrapper</Title>
     <AssemblyTitle>SharpFontWrapper</AssemblyTitle>
-    <Description>Managed library for FW1FontWrapper and SharpDX, allows to draw text using FW1FontWrapper and Direct3D11</Description>
+    <Description>Managed library for FW1FontWrapper and SharpDX, draw text with Direct3D11</Description>
   </PropertyGroup>
 
   <PropertyGroup>
     <PackageId>SharpFontWrapper</PackageId>
-    <PackageIconUrl>http://sharpdx.org/logo_100x100.png</PackageIconUrl>
-    <PackageLicenseUrl>http://sharpdx.org/License.txt</PackageLicenseUrl>
-    <PackageProjectUrl>http://sharpdx.org</PackageProjectUrl>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/mrvux/SharpFontWrapper/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/mrvux/SharpFontWrapper</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>Text DirectX SharpDX 3D Direct3D11</PackageTags>
   </PropertyGroup>
   
@@ -30,7 +29,7 @@
 
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\SharpFontWrapper.xml</DocumentationFile>
     <PackageOutputPath>$(SolutionDir)\build\nuget</PackageOutputPath>
     <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
@@ -41,6 +40,10 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;1705;1589</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <NoWarn>1701;1702;1705;1589</NoWarn>
   </PropertyGroup>
 
