@@ -1,0 +1,18 @@
+# branches to build
+branches:
+  # whitelist
+  only:
+    - master
+
+image: Visual Studio 2017
+
+configuration: Release
+
+build:
+  project: appveyor.targets
+
+artifacts:
+  # pushing a single file
+  - path: build/Zip/SharpFontWrapper.zip
+    name: Core Release build
+
