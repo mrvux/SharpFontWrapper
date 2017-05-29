@@ -10,27 +10,23 @@ using System.Threading.Tasks;
 
 using SwapChain = SharpDX.DXGI.SwapChain;
 
-namespace SimpleText
+namespace MeasureText
 {
     public static class Program
     {
         static Device device;
-        static DeviceContext deviceContext;
+        static DeviceContext2 deviceContext;
 
         static SwapChain swapChain;
         static RenderTargetView renderView;
 
         static SharpFontWrapper.Factory fontFactory;
         static SharpFontWrapper.FontWrapper fontWrapper;
-        static SharpFontWrapper.ColorRGBA colorStyle;
 
         static ViewportF viewPort;
 
         static Stopwatch watch = Stopwatch.StartNew();
 
-        //TextFormat and TextLayout
-        static SharpDX.DirectWrite.TextFormat textFormat;
-        static SharpDX.DirectWrite.TextLayout textLayout;
 
         [STAThread]
         private static void Main()
@@ -42,7 +38,7 @@ namespace SimpleText
             viewPort = new ViewportF(0, 0, renderForm.Width, renderForm.Height, 0.0f, 1.0f);
 
             device = new Device(SharpDX.Direct3D.DriverType.Hardware, DeviceCreationFlags.BgraSupport | DeviceCreationFlags.Debug);
-            deviceContext = device.ImmediateContext;
+            deviceContext = new DeviceContext2(device.ImmediateContext.NativePointer);
 
             using (SharpDX.DXGI.Factory dxgiFactory = new SharpDX.DXGI.Factory1())
             {
@@ -68,49 +64,37 @@ namespace SimpleText
 
 
             fontFactory = new SharpFontWrapper.Factory();
-
             fontWrapper = fontFactory.CreateFontWrapper(device, "Arial");
-
-            colorStyle = fontFactory.CreateColor(SharpDX.Color.Green);
-
-            textFormat = new SharpDX.DirectWrite.TextFormat(fontWrapper.DWriteFactory, "Consolas", 32.0f);
-            textFormat.TextAlignment = SharpDX.DirectWrite.TextAlignment.Center;
-            textFormat.ParagraphAlignment = SharpDX.DirectWrite.ParagraphAlignment.Near;
-
-            textLayout = new SharpDX.DirectWrite.TextLayout(fontWrapper.DWriteFactory, "DirectWrite Text Layout with Range formatting and color", textFormat, 1000.0f, 1000.0f);
-            textLayout.SetFontStyle(SharpDX.DirectWrite.FontStyle.Italic, new SharpDX.DirectWrite.TextRange(0, 11));
-            textLayout.SetFontWeight(SharpDX.DirectWrite.FontWeight.Bold, new SharpDX.DirectWrite.TextRange(13, 4));
-
-            //Note : to pass color, make sure to use native pointer, as in that case we do not need sharpdx/.net to build com wrapper, colorStyle is already one
-            textLayout.SetDrawingEffect(colorStyle.NativePointer, new SharpDX.DirectWrite.TextRange(17, 6));
 
             RenderLoop.Run(renderForm, () =>
             {
                 float t = (float)watch.Elapsed.TotalMilliseconds;
 
-                float x = ((float)Math.Sin(t * 0.002f) * 100.0f) + (renderForm.Width * 0.5f);
-
-                deviceContext.ClearRenderTargetView(renderView, Color.White);
+                deviceContext.ClearRenderTargetView(renderView, Color.Black);
                 deviceContext.OutputMerger.SetRenderTargets(renderView);
                 deviceContext.Rasterizer.SetViewport(viewPort);
+
 
                 SharpFontWrapper.TextFlags flags = SharpFontWrapper.TextFlags.NoWordWrapping
                     | SharpFontWrapper.TextFlags.VerticalCenter
                     | SharpFontWrapper.TextFlags.Center;
 
-                fontWrapper.DrawString(deviceContext, "Hello SharpFontWrapper", 64.0f, new Vector2(x, renderForm.Height * 0.25f), Color.Red, flags);
+                RectangleF layoutRect = new RectangleF(renderForm.Width * 0.5f, renderForm.Height * 0.5f, 0, 0);
 
-                fontWrapper.DrawString(deviceContext, "This is another text", 64.0f, new Vector2(renderForm.Width * 0.5f, renderForm.Height * 0.25f + 100.0f), Color.Black, flags);
+                var rect = fontWrapper.MeasureString("Hello SharpFontWrapper", "Arial", 64.0f, layoutRect, flags);
 
-                fontWrapper.DrawTextLayout(deviceContext, textLayout, new Vector2(0, renderForm.Height * 0.25f + 200.0f), Color.Black, flags);
+                SharpDX.Rectangle r = new Rectangle((int)rect.Left, (int)rect.Top, (int)rect.Right - (int)rect.Left, (int)rect.Bottom - (int)rect.Top);
+
+                deviceContext.ClearView(renderView, 1.0f, new SharpDX.Mathematics.Interop.RawRectangle[] { r }, 1);
+
+
+                fontWrapper.DrawString(deviceContext, "Hello SharpFontWrapper", 64.0f, new Vector2(renderForm.Width * 0.5f, renderForm.Height * 0.5f), Color.White, flags);
 
                 swapChain.Present(1, SharpDX.DXGI.PresentFlags.None);
             });
 
 
-            colorStyle.Dispose();
-            textLayout.Dispose();
-            textFormat.Dispose();
+
 
             fontWrapper.Dispose();
             fontFactory.Dispose();
@@ -125,3 +109,4 @@ namespace SimpleText
         }
     }
 }
+

@@ -26,9 +26,6 @@ namespace TransformedText
 
         static Stopwatch watch = Stopwatch.StartNew();
 
-        //TextFormat and TextLayout
-        static SharpDX.DirectWrite.TextFormat textFormat;
-        static SharpDX.DirectWrite.TextLayout textLayout;
 
         [STAThread]
         private static void Main()
