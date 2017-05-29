@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeasureText", "sources\Samp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomShader", "sources\Samples\CustomShader\CustomShader.csproj", "{9F5789CD-0DBB-41AD-BA78-74E6AE006C48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewGlyphSheets", "sources\Samples\ViewGlyphSheets\ViewGlyphSheets.csproj", "{FF10300E-FE56-49A1-A629-633ABB0D2D56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{9F5789CD-0DBB-41AD-BA78-74E6AE006C48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F5789CD-0DBB-41AD-BA78-74E6AE006C48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F5789CD-0DBB-41AD-BA78-74E6AE006C48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF10300E-FE56-49A1-A629-633ABB0D2D56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF10300E-FE56-49A1-A629-633ABB0D2D56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF10300E-FE56-49A1-A629-633ABB0D2D56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF10300E-FE56-49A1-A629-633ABB0D2D56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,5 +68,6 @@ Global
 		{AE9F8188-C30C-4155-B4BD-CC861CE17F36} = {E5F401FC-2B29-4792-901B-7CF351AAB687}
 		{1DA8E897-3105-4BE1-848E-9FA557AD3F53} = {E5F401FC-2B29-4792-901B-7CF351AAB687}
 		{9F5789CD-0DBB-41AD-BA78-74E6AE006C48} = {E5F401FC-2B29-4792-901B-7CF351AAB687}
+		{FF10300E-FE56-49A1-A629-633ABB0D2D56} = {E5F401FC-2B29-4792-901B-7CF351AAB687}
 	EndGlobalSection
 EndGlobal
