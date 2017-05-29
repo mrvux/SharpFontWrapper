@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+// Copyright (c) 2017 - Julien Vulliet
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+-->
+<config id="sharpfontwrapper-root" xmlns="urn:SharpGen.Config">
+
+  <!--<include-dir override="true">$(THIS_CONFIG_PATH)\..\External\LegacyHeaders</include-dir>-->
+  <include-dir>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.10.25017\include</include-dir>
+  <include-dir>=HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Kits\Installed Roots\KitsRoot10;Include\10.0.15063.0\shared</include-dir>
+  <include-dir>=HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Kits\Installed Roots\KitsRoot10;Include\10.0.15063.0\um</include-dir>
+  <include-dir>=HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Kits\Installed Roots\KitsRoot10;Include\10.0.15063.0\ucrt</include-dir>
+
+  <var name="FILTER_PASTING_ERROR">error: pasting .*a valid preprocessing token</var>
+
+  <!-- Include prolog for GCC-XML -->
+  <include-prolog>
+    // Use unicode
+    #define UNICODE
+    
+    // for SAL annotations
+    #define _PREFAST_
+    
+    // To force GUID to be declared
+    #define INITGUID
+    
+    // Values for CERT_KEY_CLASSIFICATION_PROP_ID in wincrypt.h
+    #define SORTPP_PASS
+    
+    #define _ALLOW_KEYWORD_MACROS
+    // Wrap all declspec for code-gen
+    #define __declspec(x) __attribute__((annotate(#x)))
+    
+    #define NTDDI_VERSION NTDDI_WIN10_RS2  
+  </include-prolog>
+  <file>config\Mapping-FontWrapper.xml</file>
+
+
+
+</config>

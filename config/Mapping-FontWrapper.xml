@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+// Copyright (c) 2017 - Julien Vulliet
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+-->
+<config id="sharpfontwrapper" xmlns="urn:SharpGen.Config">
+  <namespace>SharpFontWrapper</namespace>  
+  <assembly>SharpFontWrapper</assembly>
+  <include-prolog>
+    #define D3D11_NO_HELPERS
+  </include-prolog>
+  
+  <!-- Font wrapper include -->
+  <include file="config\FW1FontWrapper.h" attach="true"/>
+  <naming />
+
+  <context-set id="fwfontwrapper-all">
+  </context-set>
+
+  <!-- D3D11 extensions -->
+  <extension>
+    <context id="fwfontwrapper-all"/>
+	
+	<define struct="SharpDX.Result" sizeof="4" />
+	<define struct="SharpDX.Matrix" sizeof="64" />
+	
+	<define enum="SharpDX.DirectWrite.FontWeight" sizeof="4" />
+	<define enum="SharpDX.DirectWrite.FontStyle" sizeof="4" />
+	<define enum="SharpDX.DirectWrite.FontStretch" sizeof="4" />
+	<define enum="SharpDX.DirectWrite.RenderingMode" sizeof="4" />
+    <define enum="SharpDX.Direct2D1.MeasuringMode" sizeof="4" />
+	
+    <define struct="SharpDX.Mathematics.Interop.RawRectangleF" sizeof="16" />
+	<define struct="SharpDX.Matrix" sizeof="64" />
+	
+	<define interface="SharpDX.ComObject" />
+	
+	<define interface="SharpDX.DirectWrite.Factory" />
+	<define interface="SharpDX.DirectWrite.FontFace" />
+	<define interface="SharpDX.DirectWrite.FontCollection" />
+	<define interface="SharpDX.DirectWrite.TextLayout" />
+	
+	<define interface="SharpDX.Direct3D11.Device" />
+    <define interface="SharpDX.Direct3D11.DeviceContext" />
+    <define interface="SharpDX.Direct3D11.Texture2D" />
+	<define interface="SharpDX.Direct3D11.ShaderResourceView" />
+    <define interface="SharpDX.Direct3D11.RenderTargetView" />
+	
+    <create class="FW1" />
+
+    <context-clear />
+  </extension>
+
+  <!-- D3D11 bindings -->
+  <bindings>
+  
+  <!-- Primitive bindings -->
+    <bind from="void" to="System.Void" />
+    <bind from="int" to="System.Int32" />
+    <bind from="unsigned int" to="System.Int32" />
+    <bind from="short" to="System.Int16" />
+    <bind from="unsigned short" to="System.Int16" />
+    <bind from="unsigned char" to="System.Byte" />
+    <bind from="longlong" to="System.Int64" />
+    <bind from="unsigned longlong" to="System.Int64" />
+    <bind from="float" to="System.Single" />
+    <bind from="double" to="System.Double" />
+    <bind from="bool" to="System.Boolean" />
+	
+	<bind from="IUnknown" to="SharpDX.ComObject" />
+    <bind from="HRESULT" to="SharpDX.Result" />
+
+	<bind from="IDWriteFactory" to="SharpDX.DirectWrite.Factory" />
+	<bind from="IDWriteFontFace" to="SharpDX.DirectWrite.FontFace" />
+	<bind from="IDWriteFontCollection" to="SharpDX.DirectWrite.FontCollection" />
+	<bind from="IDWriteTextLayout" to="SharpDX.DirectWrite.TextLayout" />
+	
+	
+	<bind from="DWRITE_FONT_WEIGHT" to="SharpDX.DirectWrite.FontWeight" />
+	<bind from="DWRITE_FONT_STYLE" to="SharpDX.DirectWrite.FontStyle" />
+	<bind from="DWRITE_FONT_STRETCH" to="SharpDX.DirectWrite.FontStretch" />
+	<bind from="DWRITE_RENDERING_MODE" to="SharpDX.DirectWrite.RenderingMode" />
+    <bind from="DWRITE_MEASURING_MODE" to="SharpDX.Direct2D1.MeasuringMode" />
+	
+	
+	<bind from="ID3D11Device" to="SharpDX.Direct3D11.Device" />
+    <bind from="ID3D11DeviceContext" to="SharpDX.Direct3D11.DeviceContext" />
+	<bind from="ID3D11Texture2D" to="SharpDX.Direct3D11.Texture2D" />
+	<bind from="ID3D11ShaderResourceView" to="SharpDX.Direct3D11.ShaderResourceView" />
+    <bind from="ID3D11RenderTargetView" to="SharpDX.Direct3D11.RenderTargetView" />
+	
+	<bind from="FW1_RECTF" to="SharpDX.Mathematics.Interop.RawRectangleF" />
+	<bind from="SHARPDX_MATRIX" to="SharpDX.Matrix" />
+	
+  </bindings>
+
+  <!-- D3D11 mapping -->
+  <mapping>
+    <map enum="FW1_(.*)" name-tmp="$1"/>	
+	<map enum="FW1_TEXT_FLAG" flags="true" name="TextFlags" />
+	
+	<map interface="IFW1(.+)" name-tmp="$1" />
+	
+	<map enum-item="FW1_NOWORDWRAP" name="NoWordWrapping"/>
+	<map enum-item="FW1_NOGEOMETRYSHADER" name="DisableGeometryShader"/>
+	<map enum-item="FW1_VCENTER" name="VerticalCenter"/>
+	<map enum-item="FW1_CLIPRECT" name="ClipRectangle"/>	
+	<map enum-item="FW1_CONSTANTSPREPARED" name="ConstantsPrepared"/>	
+	<map enum-item="FW1_BUFFERSPREPARED" name="BuffersPrepared"/>	
+	<map enum-item="FW1_STATEPREPARED" name="StatePrepared"/>	
+	<map enum-item="FW1_RESTORESTATE" name="RestoreState"/>	
+	<map enum-item="FW1_NOFLUSH" name="DisableFlush"/>	
+	<map enum-item="FW1_CACHEONLY" name="CacheOnly"/>	
+	<map enum-item="FW1_NONEWGLYPHS" name="DisableNewGlyphs"/>	
+	<map enum-item="FW1_ANALYZEONLY" name="AnalyzeOnly"/>	
+	
+	<map struct="FW1_GLYPHCOORDS" name="GlyphCoordinates"/>
+	<map struct="FW1_GLYPHSHEETDESC" name="GlyphSheetDescription"/>
+	<map struct="FW1_GLYPHMETRICS" name="GlyphMetrics"/>
+	<map struct="FW1_GLYPHIMAGEDATA" name="GlyphImageData"/>
+	<map struct="FW1_GLYPHVERTEX" name="GlyphVertex"/>
+	<map struct="FW1_VERTEXDATA" name="VertexData"/>
+	<map struct="FW1_DWRITEFONTPARAMS" name="DirectWriteFontParameters"/>
+	<map struct="FW1_FONTWRAPPERCREATEPARAMS" name="FontWrapperCreationParameters"/>
+	
+	<map interface="IFW1Object" name-tmp="FontWrapperObject" />
+
+	<map interface="IFW1DWriteRenderTarget" name="DirectWriteRenderTarget" />
+
+	<map method="IFW1Factory::CreateFontWrapper" visibility="public"/>
+    <map param="IFW1Factory::CreateFontWrapper::ppFontWrapper" attribute="out" return="true"/>
+	
+	<map method="IFW1FontWrapper::DrawString" visibility="internal"/>
+	<map param="IFW1FontWrapper::DrawString::pTransformMatrix" type="void" />
+	<map param="IFW1FontWrapper::DrawString::pClipRect" type="void" />
+	<map param="IFW1FontWrapper::DrawString::Flags" type="FW1_TEXT_FLAG" />
+	
+	<map method="IFW1FontWrapper::DrawTextLayout" visibility="internal"/>
+	<map param="IFW1FontWrapper::DrawTextLayout::pTransformMatrix" type="void" />
+	<map param="IFW1FontWrapper::DrawTextLayout::pClipRect" type="void" />
+	<map param="IFW1FontWrapper::DrawTextLayout::Flags" type="FW1_TEXT_FLAG" />
+	
+	<map function="FW1CreateFactory" dll='"FW1FontWrapper.dll"' group="SharpFontWrapper.FW1" />
+  </mapping>
+</config>
