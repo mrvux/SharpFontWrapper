@@ -147,6 +147,9 @@
 	<map method="IFW1Factory::CreateFontWrapper" visibility="public"/>
     <map param="IFW1Factory::CreateFontWrapper::ppFontWrapper" attribute="out" return="true"/>
 	
+	<map method="IFW1Factory::CreateColor" visibility="internal"/>
+	<map param="IFW1Factory::CreateColor::ppColor" attribute="out" return="true"/>
+	
 	<map method="IFW1FontWrapper::DrawString" visibility="internal"/>
 	<map param="IFW1FontWrapper::DrawString::pTransformMatrix" type="void" />
 	<map param="IFW1FontWrapper::DrawString::pClipRect" type="void" />
