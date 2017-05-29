@@ -75,7 +75,7 @@
     </None>
   </ItemGroup>
 
-  <!--<Target Name="PatchAssembly" AfterTargets="AfterBuild">
+   <Target Name="PatchAssembly" AfterTargets="AfterBuild">
     <Exec Command="&quot;$(SolutionDir)\tools\SharpCLI\SharpCLI.exe&quot; &quot;$(TargetPath)&quot;" />
-  </Target>-->
+   </Target>
 </Project>
