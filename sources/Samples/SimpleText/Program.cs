@@ -77,36 +77,49 @@ namespace SimpleText
             textFormat.TextAlignment = SharpDX.DirectWrite.TextAlignment.Center;
             textFormat.ParagraphAlignment = SharpDX.DirectWrite.ParagraphAlignment.Near;
 
-            textLayout = new SharpDX.DirectWrite.TextLayout(fontWrapper.DWriteFactory, "DirectWrite Text Layout with Range formatting and color", textFormat, 1000.0f, 1000.0f);
+
+
+
+            textLayout = new SharpDX.DirectWrite.TextLayout(fontWrapper.DWriteFactory,
+                "DirectWrite Text Layout with formatting and color", textFormat, 1000.0f, 1000.0f);
+
             textLayout.SetFontStyle(SharpDX.DirectWrite.FontStyle.Italic, new SharpDX.DirectWrite.TextRange(0, 11));
-            textLayout.SetFontWeight(SharpDX.DirectWrite.FontWeight.Bold, new SharpDX.DirectWrite.TextRange(13, 4));
+           
+            textLayout.SetFontFamilyName("Arial", new SharpDX.DirectWrite.TextRange(24, 4));
+            textLayout.SetFontSize(72.0f, new SharpDX.DirectWrite.TextRange(29, 10));
+
+            //Stylistic typeography
+            SharpDX.DirectWrite.Typography typoGraphy = new SharpDX.DirectWrite.Typography(fontWrapper.DWriteFactory);
+            typoGraphy.AddFontFeature(new SharpDX.DirectWrite.FontFeature(SharpDX.DirectWrite.FontFeatureTag.StylisticSet7, 1));
+            textLayout.SetFontFamilyName("Gabriola", new SharpDX.DirectWrite.TextRange(12, 4));
+            textLayout.SetTypography(typoGraphy, new SharpDX.DirectWrite.TextRange(12, 4));
 
             //Note : to pass color, make sure to use native pointer, as in that case we do not need sharpdx/.net to build com wrapper, colorStyle is already one
-            textLayout.SetDrawingEffect(colorStyle.NativePointer, new SharpDX.DirectWrite.TextRange(17, 6));
+            textLayout.SetDrawingEffect(colorStyle.NativePointer, new SharpDX.DirectWrite.TextRange(44, 5));
 
             RenderLoop.Run(renderForm, () =>
             {
                 float t = (float)watch.Elapsed.TotalMilliseconds;
-
                 float x = ((float)Math.Sin(t * 0.002f) * 100.0f) + (renderForm.Width * 0.5f);
 
-                deviceContext.ClearRenderTargetView(renderView, Color.White);
                 deviceContext.OutputMerger.SetRenderTargets(renderView);
                 deviceContext.Rasterizer.SetViewport(viewPort);
+                deviceContext.ClearRenderTargetView(renderView, Color.Black);
 
                 SharpFontWrapper.TextFlags flags = SharpFontWrapper.TextFlags.NoWordWrapping
                     | SharpFontWrapper.TextFlags.VerticalCenter
                     | SharpFontWrapper.TextFlags.Center;
 
-                fontWrapper.DrawString(deviceContext, "Hello SharpFontWrapper", 64.0f, new Vector2(x, renderForm.Height * 0.25f), Color.Red, flags);
+                fontWrapper.DrawString(deviceContext, "Hello SharpFontWrapper", 64.0f, new Vector2(x, renderForm.Height * 0.25f), Color.Yellow, flags);
 
-                fontWrapper.DrawString(deviceContext, "This is another text", 64.0f, new Vector2(renderForm.Width * 0.5f, renderForm.Height * 0.25f + 100.0f), Color.Black, flags);
+                fontWrapper.DrawString(deviceContext, "This is another text", 64.0f, new Vector2(renderForm.Width * 0.5f, renderForm.Height * 0.25f + 100.0f), Color.White, flags);
 
-                fontWrapper.DrawTextLayout(deviceContext, textLayout, new Vector2(0, renderForm.Height * 0.25f + 200.0f), Color.Black, flags);
+                fontWrapper.DrawTextLayout(deviceContext, textLayout, new Vector2(0, renderForm.Height * 0.25f + 200.0f), Color.White, flags);
 
                 swapChain.Present(1, SharpDX.DXGI.PresentFlags.None);
             });
 
+            typoGraphy.Dispose();
 
             colorStyle.Dispose();
             textLayout.Dispose();
