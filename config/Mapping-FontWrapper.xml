@@ -101,10 +101,10 @@
 	
 	
 	<bind from="ID3D11Device" to="SharpDX.Direct3D11.Device" />
-    <bind from="ID3D11DeviceContext" to="SharpDX.Direct3D11.DeviceContext" />
+  <bind from="ID3D11DeviceContext" to="SharpDX.Direct3D11.DeviceContext" />
 	<bind from="ID3D11Texture2D" to="SharpDX.Direct3D11.Texture2D" />
 	<bind from="ID3D11ShaderResourceView" to="SharpDX.Direct3D11.ShaderResourceView" />
-    <bind from="ID3D11RenderTargetView" to="SharpDX.Direct3D11.RenderTargetView" />
+  <bind from="ID3D11RenderTargetView" to="SharpDX.Direct3D11.RenderTargetView" />
 	
 	<bind from="FW1_RECTF" to="SharpDX.Mathematics.Interop.RawRectangleF" />
 	<bind from="SHARPDX_MATRIX" to="SharpDX.Matrix" />
@@ -129,9 +129,10 @@
 	<map enum-item="FW1_NOFLUSH" name="DisableFlush"/>	
 	<map enum-item="FW1_CACHEONLY" name="CacheOnly"/>	
 	<map enum-item="FW1_NONEWGLYPHS" name="DisableNewGlyphs"/>	
-	<map enum-item="FW1_ANALYZEONLY" name="AnalyzeOnly"/>	
-	
-	<map struct="FW1_GLYPHCOORDS" name="GlyphCoordinates"/>
+	<map enum-item="FW1_ANALYZEONLY" name="AnalyzeOnly"/>
+  <map enum-item="FW1_IMMEDIATECALL" name="ImmediateCall"/>
+
+  <map struct="FW1_GLYPHCOORDS" name="GlyphCoordinates"/>
 	<map struct="FW1_GLYPHSHEETDESC" name="GlyphSheetDescription"/>
 	<map struct="FW1_GLYPHMETRICS" name="GlyphMetrics"/>
 	<map struct="FW1_GLYPHIMAGEDATA" name="GlyphImageData"/>
@@ -139,6 +140,9 @@
 	<map struct="FW1_VERTEXDATA" name="VertexData"/>
 	<map struct="FW1_DWRITEFONTPARAMS" name="DirectWriteFontParameters"/>
 	<map struct="FW1_FONTWRAPPERCREATEPARAMS" name="FontWrapperCreationParameters"/>
+
+  <map field="FW1_DWRITEFONTPARAMS::pszFontFamily" name="FontFamily" />
+  <map field="FW1_DWRITEFONTPARAMS::pszLocale" name="Locale" />
 	
 	<map interface="IFW1Object" name-tmp="FontWrapperObject" />
 
