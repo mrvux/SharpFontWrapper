@@ -145,7 +145,7 @@
 	<map interface="IFW1DWriteRenderTarget" name="DirectWriteRenderTarget" />
 
 	<map method="IFW1Factory::CreateFontWrapper" visibility="public"/>
-    <map param="IFW1Factory::CreateFontWrapper::ppFontWrapper" attribute="out" return="true"/>
+  <map param="IFW1Factory::CreateFontWrapper::ppFontWrapper" attribute="out" return="true"/>
 	
 	<map method="IFW1Factory::CreateColor" visibility="internal"/>
 	<map param="IFW1Factory::CreateColor::ppColor" attribute="out" return="true"/>
@@ -159,9 +159,11 @@
 	<map param="IFW1FontWrapper::DrawTextLayout::pTransformMatrix" type="void" />
 	<map param="IFW1FontWrapper::DrawTextLayout::pClipRect" type="void" />
 	<map param="IFW1FontWrapper::DrawTextLayout::Flags" type="FW1_TEXT_FLAG" />
+
+  <map param="IFW1FontWrapper::MeasureString::Flags" type="FW1_TEXT_FLAG" />
 	
 	<map param="IFW1GlyphAtlas::GetSheet::ppGlyphSheet" attribute="out" return="true"/>
-	
+
 	<map function="FW1CreateFactory" dll='"FW1FontWrapper.dll"' group="SharpFontWrapper.FW1" />
   </mapping>
 </config>
