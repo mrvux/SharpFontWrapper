@@ -25,7 +25,7 @@ namespace SharpFontWrapper
         /// <param name="flags">Draw flags</param>
         public void DrawString(DeviceContext deviceContext, string s, float fontSize, Vector2 origin, Color4 color, TextFlags flags)
         {
-            DrawString(deviceContext, s, fontSize, origin.X, origin.Y, color.ToBgra(), flags);
+            this.DrawString(deviceContext, s, fontSize, origin.X, origin.Y, color.ToBgra(), flags);
         }
 
         /// <summary>
@@ -38,9 +38,44 @@ namespace SharpFontWrapper
         /// <param name="flags">Draw flags</param>
         /// <param name="fontFamily">Font family</param>
         /// <param name="transform">A 3d transformation</param>
-        public void DrawString(DeviceContext deviceContext, string s, string fontFamily, float fontSize, Matrix transform, Color4 color, TextFlags flags)
+        /// <param name="clipRectangle">Optional clip rectangle</param>
+        public void DrawString(DeviceContext deviceContext, string s, string fontFamily, float fontSize, Matrix transform, RectangleF? clipRectangle, Color4 color, TextFlags flags)
         {
-            DrawString(deviceContext, s, fontFamily, fontSize, SharpDX.RectangleF.Empty, color.ToBgra(), IntPtr.Zero, new IntPtr(&transform), flags);
+            IntPtr clipRectanglePtr = IntPtr.Zero;
+            RectangleF clipRectRef;
+            if(clipRectangle.HasValue)
+            {
+                clipRectRef = clipRectangle.Value;
+                clipRectanglePtr = new IntPtr(&clipRectRef);
+            }
+            this.DrawString(deviceContext, s, fontFamily, fontSize, SharpDX.RectangleF.Empty, color.ToBgra(), IntPtr.Zero, new IntPtr(&transform), flags);
+        }
+
+        /// <summary>
+        /// Draws a text layout
+        /// </summary>
+        /// <param name="deviceContext">Device context</param>
+        /// <param name="textLayout">Text layout to draw</param>
+        /// <param name="origin">Draw origin</param>
+        /// <param name="color">Text color</param>
+        /// <param name="flags">Draw flags</param>
+        public void DrawTextLayout(DeviceContext deviceContext, SharpDX.DirectWrite.TextLayout textLayout, Vector2 origin, Color4 color, TextFlags flags)
+        {
+            this.DrawTextLayout(deviceContext, textLayout, origin.X, origin.Y, color.ToBgra(), flags);
+        }
+
+        /// <summary>
+        /// Draws a text layout
+        /// </summary>
+        /// <param name="deviceContext">Device context</param>
+        /// <param name="textLayout">Text layout to draw</param>
+        /// <param name="origin">Draw origin</param>
+        /// <param name="color">Text color</param>
+        /// <param name="flags">Draw flags</param>
+        /// <param name="transform">Transfomration matrix</param>
+        public void DrawTextLayout(DeviceContext deviceContext, SharpDX.DirectWrite.TextLayout textLayout, Vector2 origin, Matrix transform, Color4 color, TextFlags flags)
+        {
+            this.DrawTextLayout(deviceContext, textLayout, origin.X, origin.Y, color.ToBgra(), IntPtr.Zero, new IntPtr(&transform), flags);
         }
     }
 }
