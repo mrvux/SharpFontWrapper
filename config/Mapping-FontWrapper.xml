@@ -157,6 +157,8 @@
 	<map param="IFW1FontWrapper::DrawTextLayout::pClipRect" type="void" />
 	<map param="IFW1FontWrapper::DrawTextLayout::Flags" type="FW1_TEXT_FLAG" />
 	
+	<map param="IFW1GlyphAtlas::GetSheet::ppGlyphSheet" attribute="out" return="true"/>
+	
 	<map function="FW1CreateFactory" dll='"FW1FontWrapper.dll"' group="SharpFontWrapper.FW1" />
   </mapping>
 </config>
