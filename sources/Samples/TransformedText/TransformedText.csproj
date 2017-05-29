@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(SolutionDir)/Sample.targets" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -33,24 +34,6 @@
     <StartupObject>TransformedText.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SharpDX">
-      <HintPath>..\..\..\externals\sharpdx\SharpDX.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Desktop">
-      <HintPath>..\..\..\externals\sharpdx\SharpDX.Desktop.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Direct2D1">
-      <HintPath>..\..\..\externals\sharpdx\SharpDX.Direct2D1.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Direct3D11">
-      <HintPath>..\..\..\externals\sharpdx\SharpDX.Direct3D11.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.DXGI">
-      <HintPath>..\..\..\externals\sharpdx\SharpDX.DXGI.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Mathematics">
-      <HintPath>..\..\..\externals\sharpdx\SharpDX.Mathematics.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -64,12 +47,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\SharpFontWrapper\SharpFontWrapper.csproj">
-      <Project>{57844008-3e30-4e1b-b7d8-6bb85d783613}</Project>
-      <Name>SharpFontWrapper</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

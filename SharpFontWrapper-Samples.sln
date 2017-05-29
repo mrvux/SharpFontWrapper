@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpFontWrapper", "sources\SharpFontWrapper\SharpFontWrapper.csproj", "{57844008-3E30-4E1B-B7D8-6BB85D783613}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{E5F401FC-2B29-4792-901B-7CF351AAB687}"
+	ProjectSection(SolutionItems) = preProject
+		Sample.targets = Sample.targets
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{1B04AF5A-2172-4D8C-9AA3-BFDCA757B9AC}"
 EndProject
