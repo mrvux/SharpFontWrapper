@@ -14,5 +14,5 @@ build:
 artifacts:
   # pushing a single file
   - path: build/Zip/SharpFontWrapper.zip
-    name: Core Release build
+    name: SharpFontWrapper
 
