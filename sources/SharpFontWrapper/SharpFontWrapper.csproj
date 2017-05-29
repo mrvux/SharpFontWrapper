@@ -1,0 +1,85 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Authors>Julien Vulliet</Authors>
+    <Owners>Julien Vulliet</Owners>
+    <Company>Julien Vulliet</Company>
+    <Copyright>Copyright (c) 2017 Julien Vulliet</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
+
+
+    <Title>SharpFontWrapper</Title>
+    <AssemblyTitle>SharpFontWrapper</AssemblyTitle>
+    <Description>Managed library for FW1FontWrapper and SharpDX, allows to draw text using FW1FontWrapper and Direct3D11</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>SharpFontWrapper</PackageId>
+    <PackageIconUrl>http://sharpdx.org/logo_100x100.png</PackageIconUrl>
+    <PackageLicenseUrl>http://sharpdx.org/License.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://sharpdx.org</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>Text DirectX SharpDX 3D Direct3D11</PackageTags>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <TargetFramework>net46</TargetFramework>
+    <Product>SharpFontWrapper</Product>
+    <Version>0.1.0</Version>
+    <AssemblyVersion>0.1.0</AssemblyVersion>
+
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\SharpFontWrapper.xml</DocumentationFile>
+    <PackageOutputPath>$(SolutionDir)\build\nuget</PackageOutputPath>
+    <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net46'">
+    <DefineConstants>$(DefineConstants);WINDOWS_DESKTOP</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;1705;1589</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="SharpDX">
+      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1">
+      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.Direct2D1.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11">
+      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI">
+      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.DXGI.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics">
+      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(SolutionDir)\externals\fw1fontwrapper\x64\FW1FontWrapper_x64.dll" Link="FW1FontWrapper_x64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  <Pack>true</Pack>
+      <PackagePath>runtimes/win-x64/FW1FontWrapper_x64.dll</PackagePath>
+    </None>
+    <None Include="$(SolutionDir)\externals\fw1fontwrapper\x86\FW1FontWrapper_x86.dll" Link="FW1FontWrapper_x86.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  <Pack>true</Pack>
+      <PackagePath>runtimes/win-x86/FW1FontWrapper_x86.dll</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <Target Name="RunGenerator" BeforeTargets="BeforeBuild">
+    <Exec Command="&quot;$(SolutionDir)\RunGenerator.bat&quot;" />
+  </Target>
+
+  <Target Name="PatchAssembly" AfterTargets="AfterBuild">
+    <Exec Command="&quot;$(SolutionDir)\tools\SharpCLI\SharpCLI.exe&quot; &quot;$(TargetPath)&quot;" />
+  </Target>
+</Project>
