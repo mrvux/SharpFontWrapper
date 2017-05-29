@@ -66,7 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\sources\SharpFontWrapper\SharpFontWrapper.csproj">
+    <ProjectReference Include="..\..\SharpFontWrapper\SharpFontWrapper.csproj">
       <Project>{57844008-3e30-4e1b-b7d8-6bb85d783613}</Project>
       <Name>SharpFontWrapper</Name>
     </ProjectReference>

@@ -13,13 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleText", "sources\Sampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformedText", "sources\Samples\TransformedText\TransformedText.csproj", "{AE9F8188-C30C-4155-B4BD-CC861CE17F36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeasureText", "MeasureText\MeasureText.csproj", "{1DA8E897-3105-4BE1-848E-9FA557AD3F53}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generator", "Generator", "{0FC69909-A845-4600-B885-7EFC5A44DEEC}"
 	ProjectSection(SolutionItems) = preProject
 		config.xml = config.xml
 		config\Mapping-FontWrapper.xml = config\Mapping-FontWrapper.xml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeasureText", "sources\Samples\MeasureText\MeasureText.csproj", "{1DA8E897-3105-4BE1-848E-9FA557AD3F53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
