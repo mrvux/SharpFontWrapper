@@ -30,7 +30,7 @@
 
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\SharpFontWrapper.xml</DocumentationFile>
     <PackageOutputPath>$(SolutionDir)\build\nuget</PackageOutputPath>
     <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
