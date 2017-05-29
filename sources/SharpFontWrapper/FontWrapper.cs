@@ -25,7 +25,7 @@ namespace SharpFontWrapper
         /// <param name="flags">Draw flags</param>
         public void DrawString(DeviceContext deviceContext, string s, float fontSize, Vector2 origin, Color4 color, TextFlags flags)
         {
-            this.DrawString(deviceContext, s, fontSize, origin.X, origin.Y, color.ToBgra(), flags);
+            this.DrawString(deviceContext, s, fontSize, origin.X, origin.Y, color.ToRgba(), flags);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace SharpFontWrapper
                 clipRectRef = clipRectangle.Value;
                 clipRectanglePtr = new IntPtr(&clipRectRef);
             }
-            this.DrawString(deviceContext, s, fontFamily, fontSize, SharpDX.RectangleF.Empty, color.ToBgra(), IntPtr.Zero, new IntPtr(&transform), flags);
+            this.DrawString(deviceContext, s, fontFamily, fontSize, SharpDX.RectangleF.Empty, color.ToRgba(), IntPtr.Zero, new IntPtr(&transform), flags);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace SharpFontWrapper
         /// <param name="flags">Draw flags</param>
         public void DrawTextLayout(DeviceContext deviceContext, SharpDX.DirectWrite.TextLayout textLayout, Vector2 origin, Color4 color, TextFlags flags)
         {
-            this.DrawTextLayout(deviceContext, textLayout, origin.X, origin.Y, color.ToBgra(), flags);
+            this.DrawTextLayout(deviceContext, textLayout, origin.X, origin.Y, color.ToRgba(), flags);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace SharpFontWrapper
         /// <param name="transform">Transfomration matrix</param>
         public void DrawTextLayout(DeviceContext deviceContext, SharpDX.DirectWrite.TextLayout textLayout, Vector2 origin, Matrix transform, Color4 color, TextFlags flags)
         {
-            this.DrawTextLayout(deviceContext, textLayout, origin.X, origin.Y, color.ToBgra(), IntPtr.Zero, new IntPtr(&transform), flags);
+            this.DrawTextLayout(deviceContext, textLayout, origin.X, origin.Y, color.ToRgba(), IntPtr.Zero, new IntPtr(&transform), flags);
         }
     }
 }

@@ -49,5 +49,25 @@ namespace SharpFontWrapper
             this.NativePointer = factoryPointer;
 
         }
+
+        /// <summary>
+        /// Creates a color formatter
+        /// </summary>
+        /// <param name="color">Initial color</param>
+        /// <returns>Color formatter</returns>
+        public ColorRGBA CreateColor(ref SharpDX.Color4 color)
+        {
+            return this.CreateColor(color.ToRgba());
+        }
+
+        /// <summary>
+        /// Creates a color formatter
+        /// </summary>
+        /// <param name="color">Initial color</param>
+        /// <returns>Color formatter</returns>
+        public ColorRGBA CreateColor(SharpDX.Color4 color)
+        {
+            return this.CreateColor(ref color);
+        }
     }
 }
