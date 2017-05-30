@@ -8,6 +8,9 @@ image: Visual Studio 2017
 
 configuration: Release
 
+before_build:
+  - nuget restore
+
 build:
   project: appveyor.targets
 
