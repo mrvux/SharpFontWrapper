@@ -9,7 +9,7 @@ image: Visual Studio 2017
 configuration: Release
 
 before_build:
-  - nuget restore
+  - nuget restore SharpFontWrapper-Samples.sln
 
 build:
   project: appveyor.targets
