@@ -1,27 +1,11 @@
 <Project>
   <ItemGroup>
-    <Reference Include="SharpDX">
-      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.D3DCompiler">
-      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.D3DCompiler.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Desktop">
-      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.Desktop.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Direct2D1">
-      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.Direct2D1.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Direct3D11">
-      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.Direct3D11.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.DXGI">
-      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.DXGI.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Mathematics">
-      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.Mathematics.dll</HintPath>
-    </Reference>
-</ItemGroup>
+    <PackageReference Include="SharpDX.Direct2D1" Version="4.0.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.0.0" />
+    <PackageReference Include="SharpDX.Desktop" Version="4.0.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.0.0" />
+    <PackageReference Include="SharpDX.D3DCompiler" Version="4.0.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="$(SolutionDir)\sources\SharpFontWrapper\SharpFontWrapper.csproj">

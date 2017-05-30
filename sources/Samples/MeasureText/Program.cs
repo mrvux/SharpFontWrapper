@@ -85,7 +85,7 @@ namespace MeasureText
 
                 SharpDX.Rectangle r = new Rectangle((int)rect.Left, (int)rect.Top, (int)rect.Right - (int)rect.Left, (int)rect.Bottom - (int)rect.Top);
 
-                deviceContext.ClearView(renderView, 1.0f, new SharpDX.Mathematics.Interop.RawRectangle[] { r }, 1);
+                deviceContext.ClearView(renderView, Color4.White, new SharpDX.Mathematics.Interop.RawRectangle[] { r }, 1);
 
 
                 fontWrapper.DrawString(deviceContext, "Hello SharpFontWrapper", 64.0f, new Vector2(renderForm.Width * 0.5f, renderForm.Height * 0.5f), Color.White, flags);
