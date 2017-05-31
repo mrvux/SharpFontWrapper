@@ -22,29 +22,19 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFramework>net45</TargetFramework>
     <Product>SharpFontWrapper</Product>
     <Version>0.1.0</Version>
     <AssemblyVersion>0.1.0</AssemblyVersion>
 
+    <DefineConstants>$(DefineConstants);WINDOWS_DESKTOP</DefineConstants>
+    <NoWarn>1701;1702;1705;1589</NoWarn>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\SharpFontWrapper.xml</DocumentationFile>
     <PackageOutputPath>$(SolutionDir)\build\nuget</PackageOutputPath>
     <RuntimeIdentifiers>win-x86;win-x64</RuntimeIdentifiers>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net46'">
-    <DefineConstants>$(DefineConstants);WINDOWS_DESKTOP</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;1705;1589</NoWarn>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;1705;1589</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
