@@ -22,7 +22,7 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>net46</TargetFramework>
     <Product>SharpFontWrapper</Product>
     <Version>0.1.0</Version>
     <AssemblyVersion>0.1.0</AssemblyVersion>
