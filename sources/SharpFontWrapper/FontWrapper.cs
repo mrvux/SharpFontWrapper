@@ -38,6 +38,23 @@ namespace SharpFontWrapper
         /// <param name="flags">Draw flags</param>
         /// <param name="fontFamily">Font family</param>
         /// <param name="transform">A 3d transformation</param>
+        public void DrawString(DeviceContext deviceContext, string s, string fontFamily, float fontSize, Matrix transform, Color4 color, TextFlags flags)
+        {
+            IntPtr clipRectanglePtr = IntPtr.Zero;
+            SharpDX.Mathematics.Interop.RawRectangleF emptyRect = new SharpDX.Mathematics.Interop.RawRectangleF(0.0f, 0.0f, 0.0f, 0.0f);
+            this.DrawString(deviceContext, s, fontFamily, fontSize, emptyRect, color.ToRgba(), IntPtr.Zero, new IntPtr(&transform), flags);
+        }
+
+        /// <summary>
+        /// Draws a string using a transformation matrix
+        /// </summary>
+        /// <param name="deviceContext">A valid dirct3d11 device context</param>
+        /// <param name="s">String to draw</param>
+        /// <param name="fontSize">Font size</param>
+        /// <param name="color">Color</param>
+        /// <param name="flags">Draw flags</param>
+        /// <param name="fontFamily">Font family</param>
+        /// <param name="transform">A 3d transformation</param>
         /// <param name="clipRectangle">Optional clip rectangle</param>
         public void DrawString(DeviceContext deviceContext, string s, string fontFamily, float fontSize, Matrix transform, RectangleF? clipRectangle, Color4 color, TextFlags flags)
         {
@@ -48,7 +65,7 @@ namespace SharpFontWrapper
                 clipRectRef = clipRectangle.Value;
                 clipRectanglePtr = new IntPtr(&clipRectRef);
             }
-            this.DrawString(deviceContext, s, fontFamily, fontSize, SharpDX.RectangleF.Empty, color.ToRgba(), IntPtr.Zero, new IntPtr(&transform), flags);
+            this.DrawString(deviceContext, s, fontFamily, fontSize, SharpDX.RectangleF.Empty, color.ToRgba(), clipRectanglePtr, new IntPtr(&transform), flags);
         }
 
         /// <summary>
